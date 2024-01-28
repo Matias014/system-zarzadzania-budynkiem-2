@@ -184,7 +184,7 @@ public class Budynek extends JFrame implements IBaza3 {
         });
     }
 
-    //wczytuje dane budynku uzytkownika do labeli po zalogowaniu sie
+    //wczytuje dane budynku użytkownika do labelów po zalogowaniu się
     public void wczytajDaneUzytkownika(String login) {
         File plik = new File("baza_uzytkownikow.txt");
         if (plik.exists()) {
@@ -238,16 +238,13 @@ public class Budynek extends JFrame implements IBaza3 {
             while ((aktualnaLinia = reader.readLine()) != null) {
                 String[] dane = aktualnaLinia.split(",");
                 if (dane[0].equals(login)) {
-                    //aktualizujemy dane z aktualnymi wartościami z interfejsu użytkownika
                     dane[3] = CzyOtwarty.getText();
                     dane[4] = CzySwiatla.getText();
                     dane[5] = CzySiecElektryczna.getText();
                     dane[6] = temperaturaLabel.getText().split(" ")[1].replace("[°C]", "");
                     dane[7] = temperaturaLabel.getText().split(" ")[3].replace("[°C]", "");
-                    //zapisujemy zmodyfikowaną linię
                     writer.write(String.join(",", dane) + System.lineSeparator());
                 } else {
-                    //zapisujemy niezmodyfikowaną linię
                     writer.write(aktualnaLinia + System.lineSeparator());
                 }
             }
@@ -255,7 +252,6 @@ public class Budynek extends JFrame implements IBaza3 {
             e.printStackTrace();
         }
 
-        //usuwamy stary plik i zmieniamy nazwę pliku tymczasowego na oryginalną nazwę
         if (!plik.delete()) {
             System.out.println("Nie można usunąć starego pliku bazy użytkowników.");
             return;
